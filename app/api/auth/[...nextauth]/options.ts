@@ -1,3 +1,4 @@
+import prisma from "@/app/lib/db";
 import GoogleProvider from "next-auth/providers/google";
 
 export const options = {
@@ -9,8 +10,6 @@ export const options = {
         if (profile.email.endsWith("@gmail.com")) {
           userRole = "admin";
         }
-
-        console.log(profile);
 
         return {
           ...profile,
@@ -53,7 +52,27 @@ export const options = {
         session.user.role = token.role;
         session.user.regno = token.regno;
         session.user.name = token.name;
+        session.user.id = token.id;
       }
+
+      const user = await prisma.user.findUnique({
+        where: {
+          id: session.user.id,
+        },
+      });
+
+      if (!user) {
+        await prisma.user.create({
+          data: {
+            id: session.user.id,
+            email: session.user.email,
+            name: session.user.name,
+            regno: session.user.regno,
+            role: session.user.role,
+          },
+        });
+      }
+
       return session;
     },
   },

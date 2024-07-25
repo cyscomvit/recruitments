@@ -22,7 +22,12 @@ model User {
   mobile          String?
   department1     String?
   reason1         String?
+  previousWork1   String?
   department2     String?
   reason2         String?
+  previousWork2   String?
+  dateAssigned    DateTime?
+  dateApplied     DateTime?
   isSelected      Boolean?   @default(false)
+  isFormSubmitted Boolean?   @default(false)
 }

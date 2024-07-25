@@ -1,31 +1,75 @@
 import prisma from "@/app/lib/db";
+import { getServerSession } from "next-auth";
 import { NextResponse, NextRequest } from "next/server";
+import { options } from "@/app/api/auth/[...nextauth]/options";
+
+import * as z from "zod";
+
+const schema = z
+  .object({
+    name: z.string().max(50).min(3),
+    email: z.string().email(),
+    regno: z.string().min(9).max(10),
+    mobile: z.string().max(15).min(10),
+    department1: z.string().max(15).min(5),
+    reason1: z.string().max(300).min(20),
+    previousWork1: z.string().optional(),
+    department2: z.string().max(15).min(5),
+    reason2: z.string().max(300).min(20),
+    previousWork2: z.string().optional(),
+  })
+  .refine(
+    (data) => {
+      return data.department1 !== data.department2;
+    },
+    {
+      message: "Both departments cannot be same",
+      path: ["department1", "department2"],
+    }
+  );
 
 export const POST = async (request: NextRequest) => {
-  const body = await request.json();
-  const {
-    name,
-    email,
-    regno,
-    mobile,
-    department1,
-    reason1,
-    department2,
-    reason2,
-  } = body;
+  const session = await getServerSession(options);
 
-  // const result = prisma.user.create({
-  //   data: {
-  //     name,
-  //     email,
-  //     regno,
-  //     mobile,
-  //     department1,
-  //     reason1,
-  //     department2,
-  //     reason2,
-  //   } as any,
-  // });
+  if (!session) {
+    return NextResponse.redirect("/");
+  }
 
-  return NextResponse.json({ message: "Form submitted successfully!" });
+  const { user } = session;
+
+  try {
+    const data = schema.parse(await request.json());
+
+    if (user.email !== data.email) {
+      return NextResponse.json(
+        { error: "Email does not match with the logged in user" },
+        { status: 400 }
+      );
+    }
+
+    // if (user.isFormSubmitted)
+
+    const response = await prisma.user.update({
+      where: {
+        id: user.id,
+      },
+      data: {
+        name: data.name,
+        email: data.email,
+        regno: data.regno,
+        mobile: data.mobile,
+        department1: data.department1,
+        reason1: data.reason1,
+        previousWork1: data.previousWork1,
+        department2: data.department2,
+        reason2: data.reason2,
+        previousWork2: data.previousWork2,
+        isFormSubmitted: true,
+      },
+    });
+
+    return NextResponse.json(response);
+  } catch (error) {
+    return NextResponse.json({ error: error }, { status: 400 });
+  }
 };
