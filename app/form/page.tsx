@@ -105,13 +105,13 @@ export default function FormPage() {
     }
   };
 
-  console.log(session);
-
   return (
     <div className="m-10">
       <h1 className="mt-10 scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors">
-        Hello {session?.user?.name?.split(" ").slice(0, -1).join(" ")} ! 👋
+        Hello {session?.user?.name}
       </h1>
+
+      {JSON.stringify(session)}
 
       <div className="flex flex-col w-1/2 space-y-8 mt-6">
         <Form {...form} className="flex-row">
@@ -123,7 +123,7 @@ export default function FormPage() {
               <tr className="border border-gray-300">
                 <td className="px-4 py-2 border border-gray-300 w-1/4">Name</td>
                 <td className="px-4 py-2 border border-gray-300">
-                  {session?.user?.name?.split(" ").slice(0, -1).join(" ")}
+                  {session?.user?.name}
                 </td>
               </tr>
               <tr className="border border-gray-300">
@@ -139,7 +139,7 @@ export default function FormPage() {
                   Registration Number
                 </td>
                 <td className="px-4 py-2 border border-gray-300">
-                  {session?.user?.name?.split(" ").pop()}
+                  {session?.user?.regno}
                 </td>
               </tr>
             </tbody>
@@ -157,10 +157,7 @@ export default function FormPage() {
                       {...field}
                       placeholder="Name"
                       className="w-120"
-                      value={session?.user?.name
-                        ?.split(" ")
-                        .slice(0, -1)
-                        .join(" ")}
+                      value={session?.user?.name}
                     />
                   </FormControl>
                   <FormMessage />
@@ -196,7 +193,7 @@ export default function FormPage() {
                       {...field}
                       placeholder="Registration Number"
                       className="w-120"
-                      value={session?.user?.name?.split(" ").pop()}
+                      value={session?.user?.regno}
                     />
                   </FormControl>
                   <FormMessage />

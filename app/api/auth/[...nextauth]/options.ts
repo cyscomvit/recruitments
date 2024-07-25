@@ -10,10 +10,14 @@ export const options = {
           userRole = "admin";
         }
 
+        console.log(profile);
+
         return {
           ...profile,
           id: profile.sub,
           role: userRole,
+          regno: profile.family_name,
+          name: profile.given_name,
         };
       },
       clientId: process.env.GOOGLE_CLIENT_ID || "",
@@ -39,12 +43,16 @@ export const options = {
         token.id = user.id;
         token.role = user.role;
         token.email = user.email;
+        token.regno = user.regno;
+        token.name = user.name;
       }
       return token;
     },
     async session({ session, token }: any) {
       if (session?.user) {
         session.user.role = token.role;
+        session.user.regno = token.regno;
+        session.user.name = token.name;
       }
       return session;
     },
