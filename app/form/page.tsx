@@ -1,0 +1,362 @@
+"use client";
+
+import React from "react";
+
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+
+import * as z from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormDescription,
+  FormMessage,
+} from "@/components/ui/form";
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+import { useToast } from "@/components/ui/use-toast";
+
+const formSchema = z
+  .object({
+    name: z.string().max(50).min(5),
+    email: z.string().email().min(5),
+    regno: z.string().max(10).min(5),
+    mobile: z.string().max(15).min(10),
+    department1: z.string().max(15).min(5),
+    reason1: z.string().max(300).min(20),
+    previousWork1: z.string().max(300).min(20),
+    department2: z.string().max(15).min(5),
+    reason2: z.string().max(300).min(20),
+    previousWork2: z.string().max(300).min(20),
+  })
+  .refine(
+    (data) => {
+      return data.department1 !== data.department2;
+    },
+    {
+      message: "Department preferences must be different",
+      path: ["department2"],
+    }
+  );
+
+export default function FormPage() {
+  const { data: session } = useSession({
+    required: true,
+    onUnauthenticated: () => {
+      redirect("/");
+    },
+  });
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      regno: "",
+      mobile: "",
+      department1: "",
+      reason1: "",
+      previousWork1: "",
+      department2: "",
+      reason2: "",
+      previousWork2: "",
+    },
+  });
+
+  const { handleSubmit } = form;
+
+  const { toast } = useToast();
+
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    const response = await fetch("/api/form", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${session?.user?.token}`,
+      },
+      body: JSON.stringify(values),
+    });
+
+    if (response.ok) {
+      toast({
+        title: "Form submitted successfully!",
+      });
+    } else {
+      toast({
+        title: "Failed to submit form",
+      });
+    }
+  };
+
+  console.log(session);
+
+  return (
+    <div className="m-10">
+      <h1 className="mt-10 scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors">
+        Hello {session?.user?.name?.split(" ").slice(0, -1).join(" ")} ! 👋
+      </h1>
+
+      <div className="flex flex-col w-1/2 space-y-8 mt-6">
+        <Form {...form} className="flex-row">
+          <FormDescription className="scroll-m-20 text-2xl font-semibold tracking-tight">
+            Personal Details
+          </FormDescription>
+          <table className="table-auto border border-collapse border-gray-300 w-1/2">
+            <tbody>
+              <tr className="border border-gray-300">
+                <td className="px-4 py-2 border border-gray-300 w-1/4">Name</td>
+                <td className="px-4 py-2 border border-gray-300">
+                  {session?.user?.name?.split(" ").slice(0, -1).join(" ")}
+                </td>
+              </tr>
+              <tr className="border border-gray-300">
+                <td className="px-4 py-2 border border-gray-300 w-1/4">
+                  Email
+                </td>
+                <td className="px-4 py-2 border border-gray-300">
+                  {session?.user?.email}
+                </td>
+              </tr>
+              <tr className="border border-gray-300">
+                <td className="px-4 py-2 border border-gray-300 w-1/4">
+                  Registration Number
+                </td>
+                <td className="px-4 py-2 border border-gray-300">
+                  {session?.user?.name?.split(" ").pop()}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 w-3/4">
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }: any) => (
+                <FormItem hidden={true}>
+                  <FormLabel>Name</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      placeholder="Name"
+                      className="w-120"
+                      value={session?.user?.name
+                        ?.split(" ")
+                        .slice(0, -1)
+                        .join(" ")}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }: any) => (
+                <FormItem hidden={true}>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      placeholder="Email"
+                      className="w-120"
+                      value={session?.user?.email}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="regno"
+              render={({ field }: any) => (
+                <FormItem hidden={true}>
+                  <FormLabel>Registration Number</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      placeholder="Registration Number"
+                      className="w-120"
+                      value={session?.user?.name?.split(" ").pop()}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="mobile"
+              render={({ field }: any) => (
+                <FormItem>
+                  <FormLabel>Mobile Number</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      placeholder="Mobile Number"
+                      className="w-120"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="department1"
+              render={({ field }: any) => (
+                <FormItem>
+                  <FormDescription className="mt-12 scroll-m-20 text-2xl font-semibold tracking-tight mb-4">
+                    Department Preferences
+                  </FormDescription>
+                  <FormLabel>Department (1st Preference)</FormLabel>
+                  <Select onValueChange={field.onChange}>
+                    <FormControl>
+                      <SelectTrigger className="w-[50%]">
+                        <SelectValue placeholder="Select a Department" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="development">
+                        Development (Web-Dev and Open Source Projects)
+                      </SelectItem>
+                      <SelectItem value="technical">
+                        Technical (CTF and Projects)
+                      </SelectItem>
+                      <SelectItem value="design">Design</SelectItem>
+                      <SelectItem value="event">Event Management</SelectItem>
+                      <SelectItem value="content">Content</SelectItem>
+                      <SelectItem value="social-media">Social Media</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="reason1"
+              render={({ field }: any) => (
+                <FormItem>
+                  <FormLabel>Why do you what to join?</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      {...field}
+                      placeholder="Reason for joining"
+                      className="resize-none w-[80%]"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="previousWork1"
+              render={({ field }: any) => (
+                <FormItem>
+                  <FormLabel>
+                    Attach any previous works (Github links, Drive links, etc)
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      placeholder="Previous Work"
+                      className="resize-none w-[80%]"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="department2"
+              render={({ field }: any) => (
+                <FormItem>
+                  <FormLabel>Department (2nd Preference)</FormLabel>
+                  <Select onValueChange={field.onChange}>
+                    <FormControl>
+                      <SelectTrigger className="w-[50%]">
+                        <SelectValue placeholder="Select a Department" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="development">
+                        Development (Web-Dev and Open Source Projects)
+                      </SelectItem>
+                      <SelectItem value="technical">
+                        Technical (CTF and Projects)
+                      </SelectItem>
+                      <SelectItem value="design">Design</SelectItem>
+                      <SelectItem value="event">Event Management</SelectItem>
+                      <SelectItem value="content">Content</SelectItem>
+                      <SelectItem value="social-media">Social Media</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="reason2"
+              render={({ field }: any) => (
+                <FormItem>
+                  <FormLabel>Why do you what to join?</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      {...field}
+                      placeholder="Reason for joining"
+                      className="resize-none w-[80%]"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="previousWork1"
+              render={({ field }: any) => (
+                <FormItem>
+                  <FormLabel>
+                    Attach any previous works (Github links, Drive links, etc)
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      placeholder="Previous Work"
+                      className="resize-none w-[80%]"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button type="submit">Submit</Button>
+          </form>
+        </Form>
+      </div>
+    </div>
+  );
+}
