@@ -36,7 +36,7 @@ const Response = () => {
 
   useEffect(() => {
     fetch(`/api/admin/response?regno=${regno}`, {
-      method: "GET",
+      method: "POST",
     })
       .then((res) => res.json())
       .then((res) => setData(res.data));

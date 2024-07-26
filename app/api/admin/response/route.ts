@@ -9,7 +9,7 @@ const schema = z.object({
   regno: z.string().min(9).max(10),
 });
 
-export const GET = async (request: NextRequest) => {
+export const POST = async (request: NextRequest) => {
   const session = await getServerSession(options);
 
   if (!session) {
