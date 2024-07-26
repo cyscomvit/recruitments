@@ -40,14 +40,13 @@ export const POST = async (request: NextRequest) => {
   try {
     const data = schema.parse(await request.json());
 
-    if (user.email !== data.email) {
-      return NextResponse.json(
-        { error: "Email does not match with the logged in user" },
-        { status: 400 }
-      );
+    if (
+      user.email !== data.email &&
+      user.regno !== data.regno &&
+      user.name !== data.name
+    ) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 400 });
     }
-
-    // if (user.isFormSubmitted)
 
     const response = await prisma.user.update({
       where: {
@@ -65,6 +64,7 @@ export const POST = async (request: NextRequest) => {
         reason2: data.reason2,
         previousWork2: data.previousWork2,
         isFormSubmitted: true,
+        dateApplied: new Date().toISOString(),
       },
     });
 

@@ -7,7 +7,7 @@ export const options = {
       profile(profile: any) {
         let userRole = "user";
 
-        if (profile.email.endsWith("@gmail.com")) {
+        if (profile.email.endsWith("ezhil.s2021@vitstudent.ac.in")) {
           userRole = "admin";
         }
 

@@ -32,7 +32,6 @@ import {
 } from "@/components/ui/select";
 
 import { useToast } from "@/components/ui/use-toast";
-import { userAgent } from "next/server";
 
 export const formSchema = z
   .object({
@@ -66,7 +65,7 @@ export default function FormPage() {
 
   useEffect(() => {
     fetch("/api/submitted", {
-      method: "GET",
+      method: "POST",
     }).then(async (response) => {
       const data = await response.json();
       if (data.error) {
@@ -102,9 +101,6 @@ export default function FormPage() {
     values = { ...values, ...userData };
     const response = await fetch("/api/form", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
       body: JSON.stringify(values),
     });
 

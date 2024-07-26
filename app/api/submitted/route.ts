@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import { NextResponse, NextRequest } from "next/server";
 import { options } from "../auth/[...nextauth]/options";
 
-export const GET = async (request: NextRequest) => {
+export const POST = async (request: NextRequest) => {
   const session = await getServerSession(options);
 
   if (!session) {
