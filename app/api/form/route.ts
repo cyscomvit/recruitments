@@ -48,6 +48,22 @@ export const POST = async (request: NextRequest) => {
       return NextResponse.json({ error: "Unauthorized" }, { status: 400 });
     }
 
+    const acceptApplication = await prisma.config.findFirst({
+      where: {
+        id: 3,
+      },
+      select: {
+        value: true,
+      },
+    });
+
+    if (acceptApplication?.value === false) {
+      return NextResponse.json(
+        { error: "We are not accepting applications at this time." },
+        { status: 200 }
+      );
+    }
+
     const response = await prisma.user.update({
       where: {
         id: user.id,

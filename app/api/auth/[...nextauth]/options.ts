@@ -4,8 +4,8 @@ import GoogleProvider from "next-auth/providers/google";
 export const options = {
   providers: [
     GoogleProvider({
-      profile(profile: any) {
-        let userRole = prisma.user.findUnique({
+      async profile(profile: any) {
+        let userRole = await prisma.user.findUnique({
           where: {
             email: profile.email,
           },
@@ -16,6 +16,8 @@ export const options = {
 
         if (userRole?.role === "admin") {
           userRole = "admin";
+        } else if (userRole?.role === "super") {
+          userRole = "super";
         } else {
           userRole = "user";
         }

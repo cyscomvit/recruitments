@@ -16,6 +16,19 @@ const Result = () => {
   const [primaryDept, setPrimaryDept] = useState("");
   const [userSelected, setUserSelected] = useState(false);
 
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
+  useEffect(() => {
+    fetch("/api/submitted", {
+      method: "POST",
+    }).then(async (response) => {
+      const data = await response.json();
+      if (data.error) {
+        setIsFormSubmitted(true);
+      }
+    });
+  }, []);
+
   useEffect(() => {
     fetch("/api/result", {
       method: "POST",
@@ -29,7 +42,13 @@ const Result = () => {
 
   return (
     <div className="flex flex-col justify-center items-center h-[30%]">
-      {result ? (
+      {!isFormSubmitted ? (
+        <div className="flex flex-col justify-center items-center mt-24">
+          <h2 className="mt-10 scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
+            You have not submitted the form yet
+          </h2>
+        </div>
+      ) : result ? (
         userSelected ? (
           <div className="flex flex-col justify-center items-center mt-24">
             <h2 className="mt-10 scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">

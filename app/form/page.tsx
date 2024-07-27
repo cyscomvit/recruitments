@@ -62,6 +62,7 @@ export default function FormPage() {
   });
 
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [acceptApplication, setAcceptApplication] = useState(true);
 
   useEffect(() => {
     fetch("/api/submitted", {
@@ -70,6 +71,17 @@ export default function FormPage() {
       const data = await response.json();
       if (data.error) {
         setIsFormSubmitted(true);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/recruitment", {
+      method: "POST",
+    }).then(async (response) => {
+      const data = await response.json();
+      if (data.error) {
+        setAcceptApplication(false);
       }
     });
   }, []);
@@ -121,7 +133,9 @@ export default function FormPage() {
         Hello {session?.user?.name} 👋🏻
       </h2>
 
-      {isFormSubmitted ? (
+      {!acceptApplication ? (
+        <p className="mt-4">We are not accepting applications at this time.</p>
+      ) : isFormSubmitted ? (
         <p className="mt-4">
           Thank you, we have already received your response
         </p>
