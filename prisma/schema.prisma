@@ -28,7 +28,14 @@ model User {
   previousWork2   String?
   dateAssigned    DateTime?
   dateApplied     DateTime?
+  primaryDept     String?
   isSelected      Boolean?   @default(false)
   isFormSubmitted Boolean?   @default(false)
   isShortlisted   Boolean?   @default(false)
+}
+model Config {
+  id          Int     @id @default(autoincrement())
+  key         String
+  value       Boolean
+  description String?
 }

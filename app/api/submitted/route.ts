@@ -13,7 +13,6 @@ export const POST = async (request: NextRequest) => {
   const { user } = session;
 
   try {
-    // check whether the value of isFormSubmitted is true or false in the user table
     const formSubmitted = await prisma.user.findUnique({
       where: {
         id: user.id,

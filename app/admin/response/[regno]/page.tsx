@@ -108,6 +108,10 @@ const Response = () => {
             <td className="py-2 px-4 border-b">Assigned Date</td>
             <td className="py-2 px-4 border-b">{data.dateAssigned}</td>
           </tr>
+          <tr>
+            <td className="py-2 px-4 border-b">Primary Department</td>
+            <td className="py-2 px-4 border-b">{data.primaryDept}</td>
+          </tr>
         </tbody>
       </table>
       <div className="m-10 flex flex-rows space-x-8">
@@ -200,6 +204,41 @@ const Response = () => {
               <SelectGroup>
                 <SelectItem value="true">Yes</SelectItem>
                 <SelectItem value="false">No</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="flex-rows space-y-4">
+          <Select
+            onValueChange={(value) => {
+              fetch(`/api/admin/response/update?regno=${regno}`, {
+                method: "POST",
+                body: JSON.stringify({ primaryDept: value }),
+              })
+                .then(() => {
+                  toast({
+                    title: "Primary department updated",
+                  });
+                })
+                .catch(() => {
+                  toast({
+                    title: "Error updating primary department",
+                  });
+                });
+            }}
+          >
+            <Label>Primary Department</Label>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder={data.primaryDept || "Select"} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value={data.department1}>
+                  {data.department1}
+                </SelectItem>
+                <SelectItem value={data.department2}>
+                  {data.department2}
+                </SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>

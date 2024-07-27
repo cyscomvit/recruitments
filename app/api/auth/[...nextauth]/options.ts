@@ -5,10 +5,19 @@ export const options = {
   providers: [
     GoogleProvider({
       profile(profile: any) {
-        let userRole = "user";
+        let userRole = prisma.user.findUnique({
+          where: {
+            email: profile.email,
+          },
+          select: {
+            role: true,
+          },
+        });
 
-        if (profile.email.endsWith("ezhil.s2021@vitstudent.ac.in")) {
+        if (userRole?.role === "admin") {
           userRole = "admin";
+        } else {
+          userRole = "user";
         }
 
         return {
@@ -29,7 +38,7 @@ export const options = {
   callbacks: {
     async signIn({ profile }: any) {
       if (
-        // profile?.email?.endsWith("@vitstudent.ac.in") &&
+        profile?.email?.endsWith("@vitstudent.ac.in") &&
         profile?.email_verified
       ) {
         return true;

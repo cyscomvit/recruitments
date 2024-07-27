@@ -72,7 +72,7 @@ export default function FormPage() {
         setIsFormSubmitted(true);
       }
     });
-  });
+  }, []);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -116,15 +116,15 @@ export default function FormPage() {
   };
 
   return (
-    <div className="m-10">
-      <h1 className="mt-10 scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors">
-        Hello {session?.user?.name}
-      </h1>
+    <div className="flex flex-col justify-center items-center mt-24">
+      <h2 className="mt-10 scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
+        Hello {session?.user?.name} 👋🏻
+      </h2>
 
       {isFormSubmitted ? (
-        <h1 className="mt-10 scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors">
-          Form already submitted
-        </h1>
+        <p className="mt-4">
+          Thank you, we have already received your response
+        </p>
       ) : (
         <div className="flex flex-col w-1/2 space-y-8 mt-6">
           <Form {...form} className="flex-row">
