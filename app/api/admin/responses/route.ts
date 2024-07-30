@@ -30,6 +30,9 @@ export const POST = async (request: NextRequest) => {
         department1: true,
         department2: true,
       },
+      where: {
+        isFormSubmitted: true,
+      },
     });
 
     responses.forEach((response) => {
