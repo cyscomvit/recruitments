@@ -34,7 +34,7 @@ model User {
   isShortlisted   Boolean?   @default(false)
 }
 model Config {
-  id          Int     @id @default(autoincrement())
+  id          Int     @id
   key         String
   value       Boolean
   description String?
