@@ -13,7 +13,7 @@ const Nav = () => {
     <div>
       <header className="bg-gray-800 text-white">
         <nav>
-          <div className="flex justify-between items-center w-full px-10 py-4">
+          <div className="flex justify-between items-center w-full px-5 md:px-10 py-4">
             <div>
               <Link href="/">
                 <Image src={Logo} width="50" height="50" alt="logo" />
