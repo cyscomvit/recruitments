@@ -87,7 +87,7 @@ export function DataTable<TData, TValue>({
                 </div>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant="outline" className="ml-auto">
+                        <Button variant="outline" className="ml-auto text-black">
                             Columns
                         </Button>
                     </DropdownMenuTrigger>
@@ -165,7 +165,7 @@ export function DataTable<TData, TValue>({
                     </TableBody>
                 </Table>
             </div>
-            <div className="flex items-center justify-end space-x-2 py-4">
+            <div className="flex items-center justify-end space-x-2 py-4 text-black">
                 <Button
                     variant="outline"
                     size="sm"

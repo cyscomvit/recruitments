@@ -11,7 +11,7 @@ const Nav = () => {
 
   return (
     <div>
-      <header className="bg-gray-800 text-white">
+      <header className="bg-gray-300 text-black">
         <nav>
           <div className="flex justify-between items-center w-full px-5 md:px-10 py-4">
             <div>
