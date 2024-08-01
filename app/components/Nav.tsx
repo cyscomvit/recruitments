@@ -10,8 +10,9 @@ const Nav = () => {
   const { data: session } = useSession();
 
   return (
-    <div>
-      <header className="bg-gray-800 text-white">
+    <div
+    >
+      <header className="bg-gray-300 text-black">
         <nav>
           <div className="flex justify-between items-center w-full px-10 py-4">
             <div>
