@@ -147,7 +147,7 @@ export default function FormPage() {
         backgroundImage: `url(${bg.src})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        height: backgroundHeight,
+        height: "100vh",
       }}
     >
       <div className="flex flex-col items-center justify-center w-full p-6 md:p-12">
@@ -157,7 +157,7 @@ export default function FormPage() {
               Hello, {session?.user?.name}! 👋🏻
             </h2>
             <p className="mt-6 text-md md:text-xl">
-              We are not accepting applications at this time
+              We are not accepting applications at this time.
             </p>
           </div>
         ) : isFormSubmitted ? (
@@ -166,7 +166,7 @@ export default function FormPage() {
               Hello, {session?.user?.name}! 👋🏻
             </h2>
             <p className="mt-6 text-md md:text-xl">
-              Thank you for applying! We got your application
+              Thank you for applying! We got your application.
             </p>
           </div>
         ) : (
@@ -190,7 +190,7 @@ export default function FormPage() {
                           disabled
                           {...field}
                           value={session?.user?.name}
-                          className="w-[300px]"
+                          className="w-[250px]"
                         />
                       </FormControl>
                       <FormMessage />
@@ -207,7 +207,7 @@ export default function FormPage() {
                           disabled
                           {...field}
                           value={session?.user?.email}
-                          className="w-[300px]"
+                          className="w-[250px]"
                         />
                       </FormControl>
                       <FormMessage />
@@ -224,7 +224,7 @@ export default function FormPage() {
                           disabled
                           {...field}
                           value={session?.user?.regno}
-                          className="w-[300px]"
+                          className="w-[250px]"
                         />
                       </FormControl>
                       <FormMessage />
