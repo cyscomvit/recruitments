@@ -25,7 +25,7 @@ export const POST = async (request: NextRequest) => {
     if (acceptApplication?.value === false) {
       return NextResponse.json(
         { error: "We are not accepting applications at this time." },
-        { status: 200 }
+        { status: 200 },
       );
     }
 

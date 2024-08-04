@@ -29,7 +29,7 @@ export default function RootLayout({
       <body
         className={cn(
           "flex flex-col min-h-screen bg-background font-sans antialiased bg-white",
-          fontSans.variable
+          fontSans.variable,
         )}
       >
         <Providers>

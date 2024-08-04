@@ -4,9 +4,6 @@ import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 
-import useWindowSize from "react-use/lib/useWindowSize";
-import Confetti from "react-confetti";
-
 import bg from "../assets/bg.jpg";
 
 const Result = () => {
@@ -45,8 +42,6 @@ const Result = () => {
     });
   }, []);
 
-  const { width, height } = useWindowSize();
-
   return (
     <div
       className="text-white w-full pb-14"
@@ -54,14 +49,14 @@ const Result = () => {
         backgroundImage: `url(${bg.src})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        height: "86vh",
+        height: "100vh",
       }}
     >
       <div className="flex flex-col justify-center items-center h-[30%] text-center w-[85%] md:w-[50%] m-auto">
         {!isFormSubmitted ? (
           <div className="flex flex-col justify-center items-center mt-12 md:mt-24">
             <h2 className="mt-10 scroll-m-20 pb-2 text-2xl md:text-4xl font-semibold tracking-tight transition-colors first:mt-0">
-              You have not submitted the form yet
+              You have not submitted the form yet.
             </h2>
           </div>
         ) : result ? (
@@ -74,7 +69,6 @@ const Result = () => {
                 You have been selected for {primaryDept} department <br />
                 We are happy to have on board! 🥳
               </p>
-              <Confetti recycle={false} width={width} height={height - 60} />
             </div>
           ) : (
             <div className="flex flex-col justify-center items-center mt-12 md:mt-24">
@@ -84,7 +78,7 @@ const Result = () => {
               <p className="mt-6 text-md md:text-xl md:w-[70%]">
                 We regret to inform you that you have not been selected.
                 However, we encourage you to keep pursuing your goals and apply
-                again in the future 💪🏻
+                again in the future. 💪🏻
               </p>
             </div>
           )
@@ -94,7 +88,7 @@ const Result = () => {
               Thank you for filling the form!🤩
             </h2>
             <p className="mt-6 text-md md:text-xl">
-              We will be releasing the final results shortly
+              We will be releasing the final results shortly.
             </p>
           </div>
         )}

@@ -25,12 +25,12 @@ export const POST = async (request: NextRequest) => {
     if (formSubmitted?.isFormSubmitted) {
       return NextResponse.json(
         { error: "Form already submitted" },
-        { status: 200 }
+        { status: 200 },
       );
     } else {
       return NextResponse.json(
         { message: "Form not submitted" },
-        { status: 200 }
+        { status: 200 },
       );
     }
   } catch (error) {
