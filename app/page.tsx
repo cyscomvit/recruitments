@@ -19,6 +19,7 @@ export default function Home() {
         backgroundImage: `url(${bg.src})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
+        height: "86vh",
       }}
     >
       <div className="pt-10 pb-3 mb-4 mt-4">
@@ -41,7 +42,7 @@ export default function Home() {
           mission to make cyberspace a safer place!
         </p>
         <p className=" mt-10 w-[90%] md:w-[45%] mx-auto text-md md:text-lg">
-          Join CYSCOM to kickstart your cybersecurity journey.
+          Join CYSCOM to kickstart your cybersecurity journey
         </p>
       </div>
       <div className="flex justify-center mt-4">

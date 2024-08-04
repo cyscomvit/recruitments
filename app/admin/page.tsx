@@ -34,19 +34,12 @@ const Admin = () => {
   }, []);
 
   return (
-    <div
-      className="text-white w-full pb-14"
-      style={{
-        backgroundImage: `url(${bg.src})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
+    <div className="text-black w-full pb-14">
       <div className="p-5 md:p-10">
         <span className="text-xs md:text-sm px-3 py-1 bg-gray-800 text-white font-mono rounded-xl">
           Admin
         </span>
-        <h1 className="mt-2 scroll-m-20 pb-2 text-4xl md:text-6xl font-semibold transition-colors">
+        <h1 className="mt-2 scroll-m-20 pb-2 text-4xl font-semibold transition-colors">
           Welcome, {session?.user?.name}!
         </h1>
 

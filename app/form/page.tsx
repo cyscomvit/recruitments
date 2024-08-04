@@ -130,6 +130,16 @@ export default function FormPage() {
     }
   };
 
+  const [backgroundHeight, setBackgroundHeight] = useState("90vh");
+
+  useEffect(() => {
+    if (acceptApplication && !isFormSubmitted) {
+      setBackgroundHeight("95vh");
+    } else {
+      setBackgroundHeight("86vh");
+    }
+  }, [acceptApplication, isFormSubmitted]);
+
   return (
     <div
       className="text-white w-full pb-14"
@@ -137,23 +147,33 @@ export default function FormPage() {
         backgroundImage: `url(${bg.src})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
+        height: backgroundHeight,
       }}
     >
-      <div className="flex flex-col items-center justify-center w-full p-6 md:p-12 mb-20">
-        <h2 className="mt-10 scroll-m-20 pb-2 text-3xl md:text-5xl font-semibold transition-colors first:mt-0">
-          Hello, {session?.user?.name}! 👋🏻
-        </h2>
-
-        {!acceptApplication ? (
-          <p className="mt-4">
-            We are not accepting applications at this time.
-          </p>
+      <div className="flex flex-col items-center justify-center w-full p-6 md:p-12">
+        {!acceptApplication && !isFormSubmitted ? (
+          <div className="flex flex-col justify-center items-center mt-12 md:mt-24">
+            <h2 className="mt-10 scroll-m-20 pb-2 text-4xl md:text-5xl font-semibold tracking-tight transition-colors first:mt-0">
+              Hello, {session?.user?.name}! 👋🏻
+            </h2>
+            <p className="mt-6 text-md md:text-xl">
+              We are not accepting applications at this time
+            </p>
+          </div>
         ) : isFormSubmitted ? (
-          <p className="mt-4">
-            Thank you, we have received your response
-          </p>
+          <div className="flex flex-col justify-center items-center mt-12 md:mt-24">
+            <h2 className="mt-10 scroll-m-20 pb-2 text-4xl md:text-5xl font-semibold tracking-tight transition-colors first:mt-0">
+              Hello, {session?.user?.name}! 👋🏻
+            </h2>
+            <p className="mt-6 text-md md:text-xl">
+              Thank you for applying! We got your application
+            </p>
+          </div>
         ) : (
           <div className="flex flex-col space-y-4 mt-6">
+            <h2 className="mt-10 scroll-m-20 pb-2 text-3xl md:text-5xl font-semibold transition-colors first:mt-0">
+              Hello, {session?.user?.name}! 👋🏻
+            </h2>
             <Form {...form} className="flex-row w-full">
               <FormDescription className="scroll-m-20 text-2xl font-semibold text-gray-300">
                 Personal Details
@@ -212,10 +232,10 @@ export default function FormPage() {
                   )}
                 />
               </div>
-              
+
               <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="space-y-4 w-[100%] xl:w-[90%]"
+                className="space-y-4 w-[100%] md:w-[90%]"
               >
                 <FormField
                   control={form.control}
@@ -388,7 +408,7 @@ export default function FormPage() {
 
                 <div>
                   <Button
-                    className="mt-5 px-6 bg-white text-black hover:text-black hover:bg-gray-300"
+                    className="mt-5 px-6 bg-white text-black hover:text-black hover:bg-gray-200"
                     type="submit"
                   >
                     Submit

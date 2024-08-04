@@ -12,7 +12,7 @@ const Nav = () => {
 
   return (
     <div>
-      <header className="bg-gray-300 text-black">
+      <header className="bg-blue-950 text-white">
         <nav>
           <div className="flex justify-between items-center w-full px-5 md:px-10 py-4">
             <div>
@@ -33,9 +33,9 @@ const Nav = () => {
                 <Link href="/admin">Admin</Link>
               )}
               {session ? (
-                <Button onClick={() => signOut()}>Sign out</Button>
+                <Button className='bg-white text-black hover:bg-gray-200' onClick={() => signOut()}>Sign out</Button>
               ) : (
-                <Button onClick={() => signIn("google")}>
+                <Button className='bg-white text-black hover:bg-gray-200' onClick={() => signIn("google")}>
                   Sign in with Google
                   <FaGoogle className="ml-2" />
                 </Button>

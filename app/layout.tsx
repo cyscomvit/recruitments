@@ -28,13 +28,13 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased bg-gray-300",
+          "flex flex-col min-h-screen bg-background font-sans antialiased bg-white",
           fontSans.variable
         )}
       >
         <Providers>
           <Nav />
-          {children}
+          <div className="grow">{children}</div>
           <Footer />
         </Providers>
         <Toaster />
