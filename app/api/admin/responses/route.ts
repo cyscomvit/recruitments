@@ -77,7 +77,7 @@ export const POST = async (request: NextRequest) => {
   } catch (error) {
     return NextResponse.json(
       { error: "Error finding responses" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 };

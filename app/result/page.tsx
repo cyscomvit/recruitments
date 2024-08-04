@@ -4,9 +4,6 @@ import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 
-import useWindowSize from "react-use/lib/useWindowSize";
-import Confetti from "react-confetti";
-
 import bg from "../assets/bg.jpg";
 
 const Result = () => {
@@ -45,8 +42,6 @@ const Result = () => {
     });
   }, []);
 
-  const { width, height } = useWindowSize();
-
   return (
     <div
       className="text-white w-full pb-14"
@@ -74,7 +69,6 @@ const Result = () => {
                 You have been selected for {primaryDept} department <br />
                 We are happy to have on board! 🥳
               </p>
-              <Confetti recycle={false} width={width} height={height - 60} />
             </div>
           ) : (
             <div className="flex flex-col justify-center items-center mt-12 md:mt-24">

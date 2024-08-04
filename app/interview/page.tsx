@@ -66,7 +66,7 @@ const Interview = () => {
                 Congratulations, {session?.user?.name}! 🎉
               </h2>
               <p className="mt-6 text-md md:text-xl">
-                🗓️ You have been shortlisted for an online interview on{" "}.
+                🗓️ You have been shortlisted for an online interview on .
                 {dateAssigned}
               </p>
             </div>

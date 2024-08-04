@@ -52,7 +52,7 @@ export const formSchema = z
     {
       message: "Both departments cannot be same",
       path: ["department2"],
-    }
+    },
   );
 
 export default function FormPage() {

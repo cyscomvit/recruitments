@@ -5,7 +5,7 @@ import Image from "next/image";
 import Logo from "../static/cyscom-logo.png";
 
 import { Button } from "@/components/ui/button";
-import { FaGoogle } from 'react-icons/fa6';
+import { FaGoogle } from "react-icons/fa6";
 
 const Nav = () => {
   const { data: session } = useSession();
@@ -33,9 +33,17 @@ const Nav = () => {
                 <Link href="/admin">Admin</Link>
               )}
               {session ? (
-                <Button className='bg-white text-black hover:bg-gray-200' onClick={() => signOut()}>Sign out</Button>
+                <Button
+                  className="bg-white text-black hover:bg-gray-200"
+                  onClick={() => signOut()}
+                >
+                  Sign out
+                </Button>
               ) : (
-                <Button className='bg-white text-black hover:bg-gray-200' onClick={() => signIn("google")}>
+                <Button
+                  className="bg-white text-black hover:bg-gray-200"
+                  onClick={() => signIn("google")}
+                >
                   Sign in with Google
                   <FaGoogle className="ml-2" />
                 </Button>
