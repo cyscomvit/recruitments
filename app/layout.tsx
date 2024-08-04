@@ -4,42 +4,41 @@ import { Providers } from "./providers";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 
-
 import { Inter as FontSans } from "next/font/google";
 
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/toaster";
 
 const fontSans = FontSans({
-    subsets: ["latin"],
-    variable: "--font-sans",
+  subsets: ["latin"],
+  variable: "--font-sans",
 });
 
 export const metadata: Metadata = {
-    title: "CYSCOM Recruitments",
-    description: "Recruitment portal for CYSCOM",
+  title: "CYSCOM Recruitments",
+  description: "Recruitment portal for CYSCOM",
 };
 
 export default function RootLayout({
-    children,
+  children,
 }: Readonly<{
-    children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-    return (
-        <html lang="en">
-            <body
-                className={cn(
-                    "min-h-screen bg-background font-sans antialiased bg-gray-300",
-                    fontSans.variable
-                )}
-            >
-                <Providers>
-                    <Nav />
-                    {children}
-                    <Footer />
-                </Providers>
-                <Toaster />
-            </body>
-        </html>
-    );
+  return (
+    <html lang="en">
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased bg-gray-300",
+          fontSans.variable
+        )}
+      >
+        <Providers>
+          <Nav />
+          {children}
+          <Footer />
+        </Providers>
+        <Toaster />
+      </body>
+    </html>
+  );
 }
