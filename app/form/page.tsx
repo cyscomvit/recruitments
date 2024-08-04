@@ -134,7 +134,7 @@ export default function FormPage() {
 
   useEffect(() => {
     if (acceptApplication && !isFormSubmitted) {
-      setBackgroundHeight("95vh");
+      setBackgroundHeight("max-content");
     } else {
       setBackgroundHeight("86vh");
     }
@@ -316,14 +316,12 @@ export default function FormPage() {
                       name="previousWork1"
                       render={({ field }: any) => (
                         <FormItem>
-                          <FormLabel>
-                            Previous Work(s) (Portfolio, GitHub profile, Google
-                            Drive link, etc.)
-                          </FormLabel>
+                          <FormLabel>Previous Works (if any)</FormLabel>
                           <FormControl>
                             <Input
                               {...field}
-                              placeholder="Previous Work"
+                              placeholder="Portfolio, GitHub profile, Google
+                            Drive link, etc."
                               className="resize-none w-full text-black"
                             />
                           </FormControl>
@@ -388,14 +386,12 @@ export default function FormPage() {
                       name="previousWork2"
                       render={({ field }: any) => (
                         <FormItem>
-                          <FormLabel>
-                            Previous Work(s) (Portfolio, GitHub profile, Google
-                            Drive link, etc.)
-                          </FormLabel>
+                          <FormLabel>Previous Works (if any)</FormLabel>
                           <FormControl>
                             <Input
                               {...field}
-                              placeholder="Previous Work"
+                              placeholder="Portfolio, GitHub profile, Google
+                            Drive link, etc."
                               className="resize-none w-full text-black"
                             />
                           </FormControl>
