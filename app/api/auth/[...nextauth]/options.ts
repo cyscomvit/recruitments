@@ -9,15 +9,10 @@ export const options = {
           where: {
             email: profile.email,
           },
-          select: {
-            role: true,
-          },
         });
 
         if (userRole?.role === "admin") {
           userRole = "admin";
-        } else if (userRole?.role === "super") {
-          userRole = "super";
         } else {
           userRole = "user";
         }
