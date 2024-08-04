@@ -95,9 +95,9 @@ export default function Home() {
               overcoming digital obstacles.
               <br />
               <br />
-              Additionally, they're dedicated to crafting innovative projects
-              that enhance the security of systems and data, making sure
-              everything is well-guarded in our digital landscape.
+              Additionally, they&apos;re dedicated to crafting innovative
+              projects that enhance the security of systems and data, making
+              sure everything is well-guarded in our digital landscape.
             </p>
           </div>
           <div className="department px-4 py-3 text-white bg-blue-950 rounded-xl border-2 border-[#090]">
@@ -160,9 +160,9 @@ export default function Home() {
               trends and developments in the field of cybersecurity. This
               includes crafting engaging captions and using relevant hashtags to
               enhance visibility and engagement. The team ensures that our
-              chapter's activities and achievements are communicated effectively
-              to the outside world, acting as the bridge between our internal
-              efforts and our external audience.
+              chapter&apos;s activities and achievements are communicated
+              effectively to the outside world, acting as the bridge between our
+              internal efforts and our external audience.
             </p>
           </div>
         </div>
