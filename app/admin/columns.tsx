@@ -42,7 +42,7 @@ export const columns: ColumnDef<Responses>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Reg No
+          Register Number
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );

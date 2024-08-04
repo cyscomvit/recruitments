@@ -53,7 +53,7 @@ const Response = () => {
             <td className="py-2 px-4 border-b">{data.name}</td>
           </tr>
           <tr>
-            <td className="py-2 px-4 border-b">Reg No</td>
+            <td className="py-2 px-4 border-b">Register Number</td>
             <td className="py-2 px-4 border-b">{data.regno}</td>
           </tr>
           <tr>
@@ -69,7 +69,9 @@ const Response = () => {
             <td className="py-2 px-4 border-b">{data.department1}</td>
           </tr>
           <tr>
-            <td className="py-2 px-4 border-b">Reason for joining dept 1</td>
+            <td className="py-2 px-4 border-b">
+              Reason for joining Department 1
+            </td>
             <td className="py-2 px-4 border-b">{data.reason1}</td>
           </tr>
           <tr>
@@ -81,7 +83,9 @@ const Response = () => {
             <td className="py-2 px-4 border-b">{data.department2}</td>
           </tr>
           <tr>
-            <td className="py-2 px-4 border-b">Reason for joining dept 2</td>
+            <td className="py-2 px-4 border-b">
+              Reason for joining Department 2
+            </td>
             <td className="py-2 px-4 border-b">{data.reason2}</td>
           </tr>
           <tr>

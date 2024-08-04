@@ -5,15 +5,16 @@ import Image from "next/image";
 import Logo from "../static/cyscom-logo.png";
 
 import { Button } from "@/components/ui/button";
+import { FaGoogle } from 'react-icons/fa6';
 
 const Nav = () => {
   const { data: session } = useSession();
 
   return (
     <div>
-      <header className="bg-gray-800 text-white">
+      <header className="bg-blue-950 text-white">
         <nav>
-          <div className="flex justify-between items-center w-full px-10 py-4">
+          <div className="flex justify-between items-center w-full px-5 md:px-10 py-4">
             <div>
               <Link href="/">
                 <Image src={Logo} width="50" height="50" alt="logo" />
@@ -32,10 +33,11 @@ const Nav = () => {
                 <Link href="/admin">Admin</Link>
               )}
               {session ? (
-                <Button onClick={() => signOut()}>Sign out</Button>
+                <Button className='bg-white text-black hover:bg-gray-200' onClick={() => signOut()}>Sign out</Button>
               ) : (
-                <Button onClick={() => signIn("google")}>
+                <Button className='bg-white text-black hover:bg-gray-200' onClick={() => signIn("google")}>
                   Sign in with Google
+                  <FaGoogle className="ml-2" />
                 </Button>
               )}
             </div>

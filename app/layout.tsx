@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "./providers";
 import Nav from "./components/Nav";
+import Footer from "./components/Footer";
 
 import { Inter as FontSans } from "next/font/google";
 
@@ -14,8 +15,8 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-  title: "Cyscom Recruitments",
-  description: "Recruitment portal for Cyscom",
+  title: "CYSCOM Recruitments",
+  description: "Recruitment portal for CYSCOM",
 };
 
 export default function RootLayout({
@@ -27,13 +28,14 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased",
+          "flex flex-col min-h-screen bg-background font-sans antialiased bg-white",
           fontSans.variable
         )}
       >
         <Providers>
           <Nav />
-          {children}
+          <div className="grow">{children}</div>
+          <Footer />
         </Providers>
         <Toaster />
       </body>

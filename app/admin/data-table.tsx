@@ -66,28 +66,28 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      <div className="flex items-center py-4">
-        <Input
-          placeholder="Search Reg No"
-          value={(table.getColumn("regno")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("regno")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
-      </div>
-      <div className="flex items-center py-4">
-        <Input
-          placeholder="Search Name"
-          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("name")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
+      <div className="flex flex-col md:flex-row items-center pt-4">
+        <div className="flex flex-col md:flex-row w-full space-x-0 md:space-x-2 space-y-2 md:space-y-0 pb-2 md:pb-0">
+          <Input
+            placeholder="Search Register Number"
+            value={(table.getColumn("regno")?.getFilterValue() as string) ?? ""}
+            onChange={(event) =>
+              table.getColumn("regno")?.setFilterValue(event.target.value)
+            }
+            className="max-w-sm"
+          />
+          <Input
+            placeholder="Search Name"
+            value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+            onChange={(event) =>
+              table.getColumn("name")?.setFilterValue(event.target.value)
+            }
+            className="max-w-sm"
+          />
+        </div>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
+            <Button variant="outline" className="ml-auto text-black">
               Columns
             </Button>
           </DropdownMenuTrigger>
@@ -112,6 +112,7 @@ export function DataTable<TData, TValue>({
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
+      <div className="flex items-center pb-4"></div>
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -162,7 +163,7 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
+      <div className="flex items-center justify-end space-x-2 py-4 text-black">
         <Button
           variant="outline"
           size="sm"
