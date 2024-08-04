@@ -51,7 +51,7 @@ export const formSchema = z
     },
     {
       message: "Both departments cannot be same",
-      path: ["department1", "department2"],
+      path: ["department2"],
     }
   );
 
@@ -119,6 +119,7 @@ export default function FormPage() {
     });
 
     if (response.ok) {
+      setIsFormSubmitted(true);
       toast({
         title: "Form submitted successfully!",
       });
@@ -138,7 +139,7 @@ export default function FormPage() {
         backgroundPosition: "center",
       }}
     >
-      <div className="flex flex-col justify-center w-full p-6 md:p-12 mb-20">
+      <div className="flex flex-col items-center justify-center w-full p-6 md:p-12 mb-20">
         <h2 className="mt-10 scroll-m-20 pb-2 text-3xl md:text-5xl font-semibold transition-colors first:mt-0">
           Hello, {session?.user?.name}! 👋🏻
         </h2>
@@ -149,7 +150,7 @@ export default function FormPage() {
           </p>
         ) : isFormSubmitted ? (
           <p className="mt-4">
-            Thank you, we have already received your response
+            Thank you, we have received your response
           </p>
         ) : (
           <div className="flex flex-col space-y-4 mt-6">
@@ -157,6 +158,7 @@ export default function FormPage() {
               <FormDescription className="scroll-m-20 text-2xl font-semibold text-gray-300">
                 Personal Details
               </FormDescription>
+
               <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 text-black">
                 <FormField
                   control={form.control}
@@ -210,40 +212,10 @@ export default function FormPage() {
                   )}
                 />
               </div>
-
-              {/* We should not use table as it not being displayed properly on mobile. */}
-              {/* <table className="table-auto border border-collapse border-gray-300 w-1/2">
-                            <tbody>
-                                <tr className="border border-gray-300">
-                                    <td className="px-4 py-2 border border-gray-300 w-1/3">
-                                        Name
-                                    </td>
-                                    <td className="px-4 py-2 border border-gray-300">
-                                        {session?.user?.name}
-                                    </td>
-                                </tr>
-                                <tr className="border border-gray-300">
-                                    <td className="px-4 py-2 border border-gray-300 w-1/3">
-                                        Email
-                                    </td>
-                                    <td className="px-4 py-2 border border-gray-300 w-fit">
-                                        {session?.user?.email}
-                                    </td>
-                                </tr>
-                                <tr className="border border-gray-300">
-                                    <td className="px-4 py-2 border border-gray-300 w-1/3">
-                                        Register Number
-                                    </td>
-                                    <td className="px-4 py-2 border border-gray-300">
-                                        {session?.user?.regno}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table> */}
-
+              
               <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="space-y-4 w-[100%]"
+                className="space-y-4 w-[100%] xl:w-[90%]"
               >
                 <FormField
                   control={form.control}
@@ -254,9 +226,8 @@ export default function FormPage() {
                       <FormControl>
                         <Input
                           {...field}
-                          placeholder="12345XXXXX"
-                          className="w-[300px]"
-                          required
+                          placeholder="Mobile Number"
+                          className="w-[300px] text-black"
                         />
                       </FormControl>
                       <FormMessage />
@@ -276,9 +247,9 @@ export default function FormPage() {
                       render={({ field }: any) => (
                         <FormItem>
                           <FormLabel>Department (1st Preference)</FormLabel>
-                          <Select onValueChange={field.onChange} required>
+                          <Select onValueChange={field.onChange}>
                             <FormControl>
-                              <SelectTrigger className="w-full">
+                              <SelectTrigger className="w-full text-black">
                                 <SelectValue placeholder="Select a Department" />
                               </SelectTrigger>
                             </FormControl>
@@ -313,8 +284,7 @@ export default function FormPage() {
                             <Textarea
                               {...field}
                               placeholder="I want to join because..."
-                              className="resize-none w-full"
-                              required
+                              className="resize-none w-full text-black"
                             />
                           </FormControl>
                           <FormMessage />
@@ -334,7 +304,7 @@ export default function FormPage() {
                             <Input
                               {...field}
                               placeholder="Previous Work"
-                              className="resize-none w-full"
+                              className="resize-none w-full text-black"
                             />
                           </FormControl>
                           <FormMessage />
@@ -349,9 +319,9 @@ export default function FormPage() {
                       render={({ field }: any) => (
                         <FormItem>
                           <FormLabel>Department (2nd Preference)</FormLabel>
-                          <Select onValueChange={field.onChange} required>
+                          <Select onValueChange={field.onChange}>
                             <FormControl>
-                              <SelectTrigger className="w-full">
+                              <SelectTrigger className="w-full text-black">
                                 <SelectValue placeholder="Select a Department" />
                               </SelectTrigger>
                             </FormControl>
@@ -386,8 +356,7 @@ export default function FormPage() {
                             <Textarea
                               {...field}
                               placeholder="I want to join because..."
-                              className="resize-none w-full"
-                              required
+                              className="resize-none w-full text-black"
                             />
                           </FormControl>
                           <FormMessage />
@@ -407,7 +376,7 @@ export default function FormPage() {
                             <Input
                               {...field}
                               placeholder="Previous Work"
-                              className="resize-none w-full"
+                              className="resize-none w-full text-black"
                             />
                           </FormControl>
                           <FormMessage />
@@ -422,7 +391,7 @@ export default function FormPage() {
                     className="mt-5 px-6 bg-white text-black hover:text-black hover:bg-gray-300"
                     type="submit"
                   >
-                    SUBMIT
+                    Submit
                   </Button>
                 </div>
               </form>
