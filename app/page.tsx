@@ -47,19 +47,16 @@ export default function Home() {
       </div>
       <div className="flex justify-center mt-4">
         {!session ? (
-          <Button onClick={() => signIn("google")}>
-            <div className="bg-white text-black cursor-pointer mt-10 px-4 py-4 rounded-xl group flex justify-center items-center gap-1 font-semibold hover:bg-gray-200">
-              Sign in with Google
-              <FaGoogle className="ml-1" />
-            </div>
+          <Button
+            className="bg-white text-black cursor-pointer mt-10 px-4 py-4 rounded-xl group flex justify-center items-center gap-1 font-semibold hover:bg-gray-200"
+            onClick={() => signIn("google")}
+          >
+            Sign in with Google
+            <FaGoogle className="ml-1" />
           </Button>
         ) : (
-          <Button>
-            <Link href="/form">
-              <div className="bg-white text-black cursor-pointer mt-10 px-4 py-4 rounded-xl group flex justify-center items-center gap-1 font-semibold hover:bg-gray-200">
-                Apply Now !
-              </div>
-            </Link>
+          <Button className="bg-white text-black cursor-pointer mt-10 px-4 py-4 rounded-xl group flex justify-center items-center gap-1 font-semibold hover:bg-gray-200">
+            <Link href="/form">Apply Now !</Link>
           </Button>
         )}
       </div>
