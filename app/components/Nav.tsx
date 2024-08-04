@@ -5,6 +5,7 @@ import Image from "next/image";
 import Logo from "../static/cyscom-logo.png";
 
 import { Button } from "@/components/ui/button";
+import { FaGoogle } from 'react-icons/fa6';
 
 const Nav = () => {
   const { data: session } = useSession();
@@ -36,6 +37,7 @@ const Nav = () => {
               ) : (
                 <Button onClick={() => signIn("google")}>
                   Sign in with Google
+                  <FaGoogle className="ml-2" />
                 </Button>
               )}
             </div>
