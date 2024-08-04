@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write .",
+    "db:seed": "npx prisma db seed",
     "format:check": "prettier --check ."
   },
   "prisma": {
