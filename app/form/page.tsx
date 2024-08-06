@@ -168,6 +168,15 @@ export default function FormPage() {
             <p className="mt-6 text-md md:text-xl">
               Thank you for applying! We got your application
             </p>
+            <p className="mt-2 text-xs md:text-base">
+              <a
+                href="https://chat.whatsapp.com/EsOWpciK0OGCS1fzQyB08l"
+                className="text-blue-400"
+              >
+                Click here!
+              </a>{" "}
+              to join our WhatsApp group for further updates
+            </p>
           </div>
         ) : (
           <div className="flex flex-col space-y-4 mt-6">
