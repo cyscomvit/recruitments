@@ -275,10 +275,10 @@ export default function FormPage() {
                             </FormControl>
                             <SelectContent>
                               <SelectItem value="development">
-                                Development (Web Development and Open Source)
+                                Development (Web Development)
                               </SelectItem>
                               <SelectItem value="technical">
-                                Technical (CTF and Projects)
+                                Technical (Cybersecurity & CTF)
                               </SelectItem>
                               <SelectItem value="design">Design</SelectItem>
                               <SelectItem value="event">
@@ -345,10 +345,10 @@ export default function FormPage() {
                             </FormControl>
                             <SelectContent>
                               <SelectItem value="development">
-                                Development (Web Development and Open Source)
+                                Development (Web Development)
                               </SelectItem>
                               <SelectItem value="technical">
-                                Technical (CTF and Projects)
+                                Technical (Cybersecurity & CTF)
                               </SelectItem>
                               <SelectItem value="design">Design</SelectItem>
                               <SelectItem value="event">

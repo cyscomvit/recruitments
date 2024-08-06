@@ -13,7 +13,7 @@ const Nav = () => {
   return (
     <div>
       <header className="bg-blue-950 text-white">
-        <nav>
+        <nav className='overflow-x-auto scrollbar-hidden'>
           <div className="flex justify-between items-center w-full px-5 md:px-10 py-4">
             <div className='hidden md:block'>
               <Link href="/">
