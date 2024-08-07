@@ -72,7 +72,7 @@ const Result = () => {
               </h2>
               <p className="mt-6 text-md md:text-xl">
                 You have been selected for {primaryDept} department <br />
-                We are happy to have on board! 🥳
+                We are happy to have you on board! 🥳
               </p>
               <Confetti recycle={false} width={width} height={height - 60} />
             </div>
