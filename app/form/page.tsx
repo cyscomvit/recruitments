@@ -194,6 +194,7 @@ export default function FormPage() {
                   name="name"
                   render={({ field }: any) => (
                     <FormItem>
+                      <FormLabel className="text-white">Name</FormLabel>
                       <FormControl>
                         <Input
                           disabled
@@ -211,6 +212,7 @@ export default function FormPage() {
                   name="email"
                   render={({ field }: any) => (
                     <FormItem>
+                      <FormLabel className="text-white">Email</FormLabel>
                       <FormControl>
                         <Input
                           disabled
@@ -228,6 +230,9 @@ export default function FormPage() {
                   name="regno"
                   render={({ field }: any) => (
                     <FormItem>
+                      <FormLabel className="text-white">
+                        Registration Number
+                      </FormLabel>
                       <FormControl>
                         <Input
                           disabled
