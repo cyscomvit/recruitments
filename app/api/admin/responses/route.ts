@@ -47,6 +47,12 @@ export const POST = async (request: NextRequest) => {
           })
         : null;
 
+      response.dateApplied = new Date(
+        new Date(response.dateApplied).getTime() +
+          new Date(response.dateApplied).getTimezoneOffset() * 60000 +
+          19800000
+      );
+
       response.dateApplied = response.dateApplied
         ? new Date(response.dateApplied).toLocaleString("en-IN", {
             day: "2-digit",
