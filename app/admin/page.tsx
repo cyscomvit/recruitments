@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 import { Responses, columns } from "./columns";
 import { DataTable } from "./data-table";
 
-import bg from "../assets/bg.jpg";
+import { Card, CardContent } from "@/components/ui/card";
 
 const Admin = () => {
   const { data: session } = useSession({
@@ -22,6 +22,17 @@ const Admin = () => {
   }
 
   const [data, setData] = useState<Responses[]>([]);
+  const [count, setCount] = useState([0, 0, 0, 0]);
+
+  useEffect(() => {
+    fetch("/api/admin/count", {
+      method: "POST",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setCount(data.users);
+      });
+  }, []);
 
   useEffect(() => {
     fetch("/api/admin/responses", {
@@ -42,6 +53,16 @@ const Admin = () => {
         <h1 className="mt-2 scroll-m-20 pb-2 text-4xl font-semibold transition-colors">
           Welcome, {session?.user?.name}!
         </h1>
+
+        <Card className="w-[80%] md:w-[50%] lg:w-[40%] xl:w-[20%] mt-6">
+          <CardContent>
+            <p className="text-lg pt-6 pb-2 font-semibold">Users</p>
+            <p className="text-sm pt-1">Total - {count[0]}</p>
+            <p className="text-sm pt-1">Applied - {count[1]}</p>
+            <p className="text-sm pt-1">Shortlisted - {count[2]}</p>
+            <p className="text-sm pt-1">Selected - {count[3]}</p>
+          </CardContent>
+        </Card>
 
         <div className="flex flex-col space-y-8 mt-6">
           <DataTable columns={columns} data={data} />
