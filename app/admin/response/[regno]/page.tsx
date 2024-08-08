@@ -46,79 +46,81 @@ const Response = () => {
 
   return (
     <>
-      <table className="min-w-full bg-white">
-        <tbody>
-          <tr>
-            <td className="py-2 px-4 border-b">Name</td>
-            <td className="py-2 px-4 border-b">{data.name}</td>
-          </tr>
-          <tr>
-            <td className="py-2 px-4 border-b">Register Number</td>
-            <td className="py-2 px-4 border-b">{data.regno}</td>
-          </tr>
-          <tr>
-            <td className="py-2 px-4 border-b">Email</td>
-            <td className="py-2 px-4 border-b">{data.email}</td>
-          </tr>
-          <tr>
-            <td className="py-2 px-4 border-b">Mobile</td>
-            <td className="py-2 px-4 border-b">{data.mobile}</td>
-          </tr>
-          <tr>
-            <td className="py-2 px-4 border-b">Department 1</td>
-            <td className="py-2 px-4 border-b">{data.department1}</td>
-          </tr>
-          <tr>
-            <td className="py-2 px-4 border-b">
-              Reason for joining Department 1
-            </td>
-            <td className="py-2 px-4 border-b">{data.reason1}</td>
-          </tr>
-          <tr>
-            <td className="py-2 px-4 border-b">Previous Work 1</td>
-            <td className="py-2 px-4 border-b">{data.previousWork1}</td>
-          </tr>
-          <tr>
-            <td className="py-2 px-4 border-b">Department 2</td>
-            <td className="py-2 px-4 border-b">{data.department2}</td>
-          </tr>
-          <tr>
-            <td className="py-2 px-4 border-b">
-              Reason for joining Department 2
-            </td>
-            <td className="py-2 px-4 border-b">{data.reason2}</td>
-          </tr>
-          <tr>
-            <td className="py-2 px-4 border-b">Previous Work 2</td>
-            <td className="py-2 px-4 border-b">{data.previousWork2}</td>
-          </tr>
-          <tr>
-            <td className="py-2 px-4 border-b">Shortlisted</td>
-            <td className="py-2 px-4 border-b">
-              {data.isShortlisted ? "Yes" : "No"}
-            </td>
-          </tr>
-          <tr>
-            <td className="py-2 px-4 border-b">Selected</td>
-            <td className="py-2 px-4 border-b">
-              {data.isSelected ? "Yes" : "No"}
-            </td>
-          </tr>
-          <tr>
-            <td className="py-2 px-4 border-b">Applied Date</td>
-            <td className="py-2 px-4 border-b">{data.dateApplied}</td>
-          </tr>
-          <tr>
-            <td className="py-2 px-4 border-b">Assigned Date</td>
-            <td className="py-2 px-4 border-b">{data.dateAssigned}</td>
-          </tr>
-          <tr>
-            <td className="py-2 px-4 border-b">Primary Department</td>
-            <td className="py-2 px-4 border-b">{data.primaryDept}</td>
-          </tr>
-        </tbody>
-      </table>
-      <div className="m-10 flex flex-rows space-x-8">
+      <div className="overflow-x-auto scrollbar-hidden m-4">
+        <table className=" bg-white">
+          <tbody>
+            <tr>
+              <td className="py-2 px-4 border-b">Name</td>
+              <td className="py-2 px-4 border-b">{data.name}</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4 border-b">Register Number</td>
+              <td className="py-2 px-4 border-b">{data.regno}</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4 border-b">Email</td>
+              <td className="py-2 px-4 border-b">{data.email}</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4 border-b">Mobile</td>
+              <td className="py-2 px-4 border-b">{data.mobile}</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4 border-b">Department 1</td>
+              <td className="py-2 px-4 border-b">{data.department1}</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4 border-b">
+                Reason for joining Department 1
+              </td>
+              <td className="py-2 px-4 border-b">{data.reason1}</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4 border-b">Previous Work 1</td>
+              <td className="py-2 px-4 border-b">{data.previousWork1}</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4 border-b">Department 2</td>
+              <td className="py-2 px-4 border-b">{data.department2}</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4 border-b">
+                Reason for joining Department 2
+              </td>
+              <td className="py-2 px-4 border-b">{data.reason2}</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4 border-b">Previous Work 2</td>
+              <td className="py-2 px-4 border-b">{data.previousWork2}</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4 border-b">Shortlisted</td>
+              <td className="py-2 px-4 border-b">
+                {data.isShortlisted ? "Yes" : "No"}
+              </td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4 border-b">Selected</td>
+              <td className="py-2 px-4 border-b">
+                {data.isSelected ? "Yes" : "No"}
+              </td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4 border-b">Applied Date</td>
+              <td className="py-2 px-4 border-b">{data.dateApplied}</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4 border-b">Assigned Date</td>
+              <td className="py-2 px-4 border-b">{data.dateAssigned}</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4 border-b">Primary Department</td>
+              <td className="py-2 px-4 border-b">{data.primaryDept}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div className="m-10 flex flex-col lg:flex-row lg:space-x-8 ">
         <div className="space-y-4">
           <Label>Assign Date</Label>
           <Input
@@ -150,7 +152,7 @@ const Response = () => {
             Update Assigned Date
           </Button>
         </div>
-        <div className="flex-rows space-y-4">
+        <div className="flex-rows space-y-4 mt-4 mb-4 lg:mt-0">
           <Select
             onValueChange={(value) => {
               fetch(`/api/admin/response/update?regno=${regno}`, {
@@ -181,7 +183,7 @@ const Response = () => {
             </SelectContent>
           </Select>
         </div>
-        <div className="flex-rows space-y-4">
+        <div className="flex-rows space-y-4 mb-4 lg:mt-0">
           <Select
             onValueChange={(value) => {
               fetch(`/api/admin/response/update?regno=${regno}`, {
